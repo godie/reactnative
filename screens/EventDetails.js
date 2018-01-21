@@ -9,24 +9,27 @@ export default class EventDetails extends React.Component {
   };
 
   render() {
+   
+    let { item } = this.props.navigation.state.params;
+    console.log(item);
     return (
       <View style={styles.container}>
         <View style={styles.detailsContainer}>
-          <Text style={styles.title}>Conference Keynote</Text>
+          <Text style={styles.title}>{item.title}</Text>
           <Text style={styles.subtitle}>Thursday, May 18</Text>
-          <Text style={styles.description}>blablablabla balbalablab</Text>
+          <Text style={styles.description}></Text>
 
         </View>
         <View style={styles.speakerContainer}>
           <Image 
           style={styles.image}
-          source={{ uri: "http://unsplash.it/40/40" }}git 
+          source={{ uri: "http://unsplash.it/40/40" }} 
           //source = {require('./assets/icon.png')}
 
           />
           <View style={styles.speakerDetailsContainer}>
-            <Text style={styles.speakerName}>Name: Diego mendoza</Text>
-            <Text style={styles.speakerBio}>How to React native</Text>
+            <Text style={styles.speakerName}>Name: {item.speaker}</Text>
+            <Text style={styles.speakerBio}>{item.title}</Text>
           </View>
         </View>
       </View>

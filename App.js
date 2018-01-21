@@ -1,26 +1,34 @@
 import React from 'react';
 import { StyleSheet, Text, View, Image } from 'react-native';
-import { StackNavigator } from 'react-navigation';
+import { StackNavigator, TapNavigator } from 'react-navigation';
 import EventDetails from './screens/EventDetails';
 import Schedule from './screens/Schedule';
 import Feedback from './screens/Feedback';
 
 
+const ScheduleStack = StackNavigator({
+  ScheduleList : { screen: Schedule},
+  EventDetails : { screen: EventDetails}
+}, {
+  headerMode: 'screen'
+});
+
+
+
 export default class App extends React.Component {
 
-  static navigationOptions = {
-    title: 'Home'
-  };
+  
 
   render() {
     return (
       <View style={styles.container} >
-        <Feedback />
+        <ScheduleStack />
      </View>
     );
 
     _handlePress = () => {
-      this.props.navigation.navigate('Home');
+      const { navigate } = this.props.navigation
+      navigate('Home');
     }
   }
 }

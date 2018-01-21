@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Text, View, Image, ImageBackground, SectionList } from 'react-native';
+import { StyleSheet, Text, View, Image, ImageBackground, SectionList, TouchableOpacity } from 'react-native';
 import ToggleButton  from "../components/ToggleButton";
 
 const sections = 
@@ -47,6 +47,11 @@ const sections =
 const extractKey = ({id}) => id;
 
 export default class Schedule extends React.Component {
+
+    static navigationOptions = {
+        header: null
+      };
+
     state = { 
         selectedDay: 'JUEVES'
       };
@@ -64,12 +69,18 @@ export default class Schedule extends React.Component {
 
       }
 
+      _handlePressRow = item => {
+          this.props.navigation.navigate('EventDetails', {item});
+      }
+
       renderItem = ({item}) => {
         return(
-          <View style={styles.row}>
+          <TouchableOpacity 
+          style={styles.row}
+          onPress={() => this._handlePressRow(item)}>
               <Text style={styles.rowTitle}>{item.title}</Text>
               <Text style={styles.rowSpeaker}>{item.speaker}</Text>
-          </View>
+          </TouchableOpacity>
         )
     }
 
@@ -80,10 +91,9 @@ export default class Schedule extends React.Component {
                 <ImageBackground style={styles.image} source={require("../assets/hero.png")} >
                     <Image style={styles.logo} source={require("../assets/logo.png")} />
                     <Text style={styles.title}>React Europe</Text>
-                    <ToggleButton items={[
-                        "JUEVES",
-                        "VIERNES"
-                    ]} value={selectedDay} 
+                    <ToggleButton 
+                    items={["JUEVES", "VIERNES"]}
+                    value={selectedDay} 
                     onPressItem={this.handlePressItem} />
                 </ImageBackground>
                     <SectionList 
