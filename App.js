@@ -3,8 +3,10 @@ import { StyleSheet, Text, View, Image } from 'react-native';
 import { StackNavigator } from 'react-navigation';
 import EventDetails from './screens/EventDetails';
 import Schedule from './screens/Schedule';
+import Feedback from './screens/Feedback';
 
-export class App extends React.Component {
+
+export default class App extends React.Component {
 
   static navigationOptions = {
     title: 'Home'
@@ -13,7 +15,7 @@ export class App extends React.Component {
   render() {
     return (
       <View style={styles.container} >
-        <Schedule />
+        <Feedback />
      </View>
     );
 
@@ -23,12 +25,12 @@ export class App extends React.Component {
   }
 }
 
-export default StackNavigator({
+/*export class StackNavigator({
   Home: {
     screen: App
   }
 })
-
+*/
 
 const styles = StyleSheet.create({
   container: {
